@@ -13,6 +13,9 @@ import android.widget.TextView;
 import com.example.todowearapp.R;
 import com.example.todowearapp.databinding.ActivityMainBinding;
 import com.example.todowearapp.model.Task;
+import com.example.todowearapp.utils.ConfirmUtils;
+import com.example.todowearapp.utils.Constants;
+import com.example.todowearapp.utils.TaskUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,4 +59,12 @@ public class MainActivity extends AppCompatActivity {
         }
         return new Task(id,task);
     }
+
+    private  void updateTask(Task task, int action){
+        if(action== Constants.ACTION_ADD){
+            TaskUtils.saveTask(task, this);
+            ConfirmUtils.showSavedMessage(getString(R.string.task_saved),this);
+        }
+    }
+
 }
